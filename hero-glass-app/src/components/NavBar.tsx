@@ -51,7 +51,7 @@ function NavBar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white/90 backdrop-blur-md border-t border-black/10 px-4 py-4 flex flex-col gap-4 animate-in slide-in-from-top-2 duration-300">
+        <div className="md:hidden bg-white/90 backdrop-blur-md border-t border-black/10 px-4 py-4 flex flex-col gap-4 transition-all duration-300 ease-out">
           <Link 
             href="#about" 
             className="text-black/80 hover:text-black transition-colors font-medium"
