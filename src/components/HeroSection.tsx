@@ -73,8 +73,26 @@ const HeroSection: React.FC = () => {
                 Thinkers
               </span>
             </span>
-            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-black/70">
-              Not <span className="text-black/50">Machines</span>
+            <span className="block mb-2">
+              <span className="text-black">Not </span>
+              <span
+                className="relative"
+                style={{
+                  WebkitTextFillColor: "transparent",
+                  background: "linear-gradient(90deg, #facc15, #fb923c, #fde68a)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text"
+                }}
+              >
+                <span
+                  className="line-through"
+                  style={{
+                    textDecorationColor: "#ef4444" // Tailwind red-500
+                  }}
+                >
+                  Machines
+                </span>
+              </span>
             </span>
           </span>
         </h1>
@@ -123,24 +141,10 @@ const HeroSection: React.FC = () => {
             <div className="text-sm text-black/60">Client Satisfaction</div>
           </div>
         </div>
-
-        {/* Scroll indicator */}
-        <div 
-          className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-700 ease-out delay-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <div className="flex flex-col items-center text-black/40 text-sm">
-            <span className="mb-2">Scroll to explore</span>
-            <div className="w-6 h-10 border-2 border-black/20 rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-black/40 rounded-full mt-2 animate-bounce"></div>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Bottom gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-42 bg-gradient-to-t from-black/60 to-transparent" />
     </section>
   );
 };
