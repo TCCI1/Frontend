@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --glow-yellow: #FFD700;
+  --glow-orange: #FFA500;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-glow-yellow: var(--glow-yellow);
+  --color-glow-orange: var(--glow-orange);
+  --color-glass-bg: var(--glass-bg);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --animate-breathe: breathe 3s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.7s ease-in-out;
+  --animate-glass-fade: glass-fade 1s ease-in-out;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+    box-shadow: 0 0 20px var(--glow-orange), 0 0 40px var(--glow-yellow), 0 0 60px var(--glow-orange);
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+    box-shadow: 0 0 30px var(--glow-orange), 0 0 60px var(--glow-yellow), 0 0 90px var(--glow-orange);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glass-fade {
+  from {
+    backdrop-filter: blur(0px);
+    background: transparent;
+  }
+  to {
+    backdrop-filter: blur(12px);
+    background: linear-gradient(180deg, var(--glass-bg) 0%, rgba(255, 255, 255, 0.05) 100%);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Accessibility: Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
