@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import MoveableCard from './MoveableCard';
+
 
 const HeroSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,6 +14,9 @@ const HeroSection: React.FC = () => {
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center bg-white overflow-hidden">
       {/* Animated background grid */}
+      <div className="hidden md:block">
+        <MoveableCard />
+      </div>
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
         <div className="w-full h-full grid grid-cols-20 grid-rows-20">
           {/* Only render the grid container, not individual squares */}
@@ -47,7 +52,7 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center justify-center px-6 py-20 text-center max-w-4xl mx-auto">
+      <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 py-12 sm:py-20 text-center max-w-4xl mx-auto">
         {/* Badge */}
         <div 
           className={`mb-6 transition-all duration-700 ease-out ${
@@ -66,7 +71,7 @@ const HeroSection: React.FC = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+          <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
             <span className="block mb-2">
               <span className="text-black">We Build </span>
               <span className="text-transparent bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-300 bg-clip-text">
@@ -99,11 +104,11 @@ const HeroSection: React.FC = () => {
 
         {/* Subtitle */}
         <p 
-          className={`mb-8 max-w-2xl text-lg sm:text-xl text-black/60 font-light leading-relaxed transition-all duration-700 ease-out delay-400 ${
+          className={`mb-8 max-w-2xl text-base sm:text-lg md:text-xl text-black/60 font-light leading-relaxed transition-all duration-700 ease-out delay-400 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          Empowering the next generation through innovative technology and creative solutions that actually matter.
+          At Coding Culture, we provide structured, mentor-led coding programs that combine practical learning, hands-on projects, and community support.
         </p>
 
         {/* CTA Buttons */}
@@ -124,27 +129,27 @@ const HeroSection: React.FC = () => {
 
         {/* Stats */}
         <div 
-          className={`mt-12 grid grid-cols-2 sm:grid-cols-3 gap-6 max-w-2xl transition-all duration-700 ease-out delay-800 ${
+          className={`mt-8 sm:mt-12 grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 max-w-2xl transition-all duration-700 ease-out delay-800 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-black mb-1">500+</div>
-            <div className="text-sm text-black/60">Projects Delivered</div>
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-black mb-1">500+</div>
+            <div className="text-xs sm:text-sm text-black/60">Projects Delivered</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-black mb-1">50+</div>
-            <div className="text-sm text-black/60">Team Members</div>
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-black mb-1">50+</div>
+            <div className="text-xs sm:text-sm text-black/60">Team Members</div>
           </div>
           <div className="text-center col-span-2 sm:col-span-1">
-            <div className="text-2xl sm:text-3xl font-bold text-black mb-1">99%</div>
-            <div className="text-sm text-black/60">Client Satisfaction</div>
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-black mb-1">99%</div>
+            <div className="text-xs sm:text-sm text-black/60">Client Satisfaction</div>
           </div>
         </div>
       </div>
 
       {/* Bottom gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-42 bg-gradient-to-t from-black/60 to-transparent" />
+      <div className="rounded-3xl absolute bottom-0 left-0 right-0 h-42 bg-gradient-to-t from-black/60 to-transparent" />
     </section>
   );
 };
