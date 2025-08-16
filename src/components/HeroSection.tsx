@@ -14,7 +14,7 @@ const HeroSection: React.FC = () => {
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center bg-white overflow-hidden">
       {/* Animated background grid */}
-      <div className="hidden md:block">
+      <div className="hidden md:block ">
         <MoveableCard />
       </div>
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
@@ -134,22 +134,19 @@ const HeroSection: React.FC = () => {
           }`}
         >
           <div className="text-center">
-            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-black mb-1">500+</div>
-            <div className="text-xs sm:text-sm text-black/60">Projects Delivered</div>
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-black mb-1">50+</div>
+            <div className="text-xs sm:text-sm text-black/60">Students Trusted</div>
           </div>
           <div className="text-center">
-            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-black mb-1">50+</div>
-            <div className="text-xs sm:text-sm text-black/60">Team Members</div>
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-black mb-1">40+</div>
+            <div className="text-xs sm:text-sm text-black/60">Students Satified</div>
           </div>
           <div className="text-center col-span-2 sm:col-span-1">
-            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-black mb-1">99%</div>
-            <div className="text-xs sm:text-sm text-black/60">Client Satisfaction</div>
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-black mb-1">50%</div>
+            <div className="text-xs sm:text-sm text-black/60">Students are Earning</div>
           </div>
         </div>
       </div>
-
-      {/* Bottom gradient */}
-      <div className="rounded-3xl absolute bottom-0 left-0 right-0 h-42 bg-gradient-to-t from-black/60 to-transparent" />
     </section>
   );
 };
