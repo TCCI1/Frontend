@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Roadmap from "../assets/roadmap.png";
 
 const RoadMapPreview = () => {
   return (
