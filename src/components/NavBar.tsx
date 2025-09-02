@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useSession } from '@clerk/nextjs';
 
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const { isSignedIn } = useSession();
 
   // Listen for scroll to show navbar
   useEffect(() => {
@@ -25,7 +27,7 @@ function NavBar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-bold text-xl text-black">
           <span className="w-3 h-3 rounded-full bg-gradient-to-tr from-yellow-400 to-orange-400 mr-2 shadow-lg animate-pulse"></span>
-          <span>HeroGlass</span>
+          <span>Codinnnnn</span>
         </Link>
 
         {/* Desktop Menu */}
@@ -42,12 +44,21 @@ function NavBar() {
           <Link href="#contact" className="text-black/80 hover:text-black transition-colors font-medium">
             Contact
           </Link>
-          <a
-            href="#"
-            className="ml-4 px-5 py-2 rounded-full bg-gradient-to-r from-orange-400 to-yellow-400 text-black font-semibold shadow-md hover:shadow-lg transition-shadow"
-          >
-            Get Started
-          </a>
+          {isSignedIn ? (
+            <Link
+              href="/main"
+              className="ml-4 px-5 py-2 rounded-full bg-gradient-to-r from-orange-400 to-yellow-400 text-black font-semibold shadow-md hover:shadow-lg transition-shadow"
+            >
+              Dashboard
+            </Link>
+          ) : (
+            <a
+              href="/sign-in"
+              className="ml-4 px-5 py-2 rounded-full bg-gradient-to-r from-orange-400 to-yellow-400 text-black font-semibold shadow-md hover:shadow-lg transition-shadow"
+            >
+              Get Started
+            </a>
+          )}
         </div>
 
         {/* Mobile Hamburger */}
@@ -93,13 +104,23 @@ function NavBar() {
           >
             Contact
           </Link>
-          <a
-            href="#"
-            className="mt-2 px-5 py-2 rounded-full bg-gradient-to-r from-orange-400 to-yellow-400 text-black font-semibold shadow-md hover:shadow-lg transition-shadow text-center"
-            onClick={() => setMenuOpen(false)}
-          >
-            Get Started
-          </a>
+          {isSignedIn ? (
+            <Link
+              href="/main"
+              className="mt-2 px-5 py-2 rounded-full bg-gradient-to-r from-orange-400 to-yellow-400 text-black font-semibold shadow-md hover:shadow-lg transition-shadow text-center"
+              onClick={() => setMenuOpen(false)}
+            >
+              Dashboard
+            </Link>
+          ) : (
+            <a
+              href="#"
+              className="mt-2 px-5 py-2 rounded-full bg-gradient-to-r from-orange-400 to-yellow-400 text-black font-semibold shadow-md hover:shadow-lg transition-shadow text-center"
+              onClick={() => setMenuOpen(false)}
+            >
+              Get Started
+            </a>
+          )}
         </div>
       )}
     </nav>
