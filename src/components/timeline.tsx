@@ -77,23 +77,23 @@ const timelineData: TimelineItem[] = [
 
 const TimelineComponent: React.FC = () => {
   return (
-    <div className="relative pl-6">
+    <div className="relative pl-4 sm:pl-6">
       {/* Vertical line */}
-      <div className="absolute left-4 top-0 bottom-0 w-1 bg-orange-200 dark:bg-orange-800 rounded-full" aria-hidden="true" />
-      <ul className="space-y-10">
+      <div className="absolute left-2 sm:left-4 top-0 bottom-0 w-0.5 sm:w-1 bg-orange-200 dark:bg-orange-800 rounded-full" aria-hidden="true" />
+      <ul className="space-y-6 sm:space-y-10">
         {timelineData.map((item, idx) => (
           <li key={idx} className="relative flex items-start group">
             {/* Icon */}
-            <div className="absolute -left-1.5 z-10">
+            <div className="absolute -left-1 sm:-left-1.5 z-10">
               {item.icon || (
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-orange-200 dark:bg-orange-800 text-orange-700 dark:text-orange-200 text-lg font-bold">
+                <span className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-orange-200 dark:bg-orange-800 text-orange-700 dark:text-orange-200 text-sm sm:text-lg font-bold">
                   {idx + 1}
                 </span>
               )}
             </div>
-            <div className="ml-10">
-              <div className="flex items-center gap-2">
-                <h3 className="text-lg font-semibold text-orange-900 dark:text-orange-100">
+            <div className="ml-6 sm:ml-10">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                <h3 className="text-base sm:text-lg font-semibold text-orange-900 dark:text-orange-100">
                   {item.link ? (
                     <a
                       href={item.link}
@@ -107,12 +107,12 @@ const TimelineComponent: React.FC = () => {
                     item.title
                   )}
                 </h3>
-                <span className="text-xs bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-200 px-2 py-0.5 rounded font-mono ml-2">
+                <span className="text-xs bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-200 px-2 py-0.5 rounded font-mono self-start sm:ml-2">
                   {item.date}
                 </span>
               </div>
               {item.description && (
-                <p className="mt-1 text-neutral-700 dark:text-neutral-300">{item.description}</p>
+                <p className="mt-1 text-sm sm:text-base text-neutral-700 dark:text-neutral-300">{item.description}</p>
               )}
             </div>
           </li>

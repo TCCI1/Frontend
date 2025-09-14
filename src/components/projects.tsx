@@ -34,23 +34,23 @@ const projects: Project[] = [
 // Minimal shadcn/ui Card and Badge components (replace with actual imports in your project)
 function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`rounded-xl border bg-card text-card-foreground shadow-sm p-6 mb-6 ${className}`}>
+    <div className={`rounded-lg sm:rounded-xl border bg-card text-card-foreground shadow-sm p-4 sm:p-6 mb-4 sm:mb-6 ${className}`}>
       {children}
     </div>
   );
 }
 
 function CardTitle({ children }: { children: React.ReactNode }) {
-  return <h3 className="text-lg font-semibold mb-2">{children}</h3>;
+  return <h3 className="text-base sm:text-lg font-semibold mb-2">{children}</h3>;
 }
 
 function CardDescription({ children }: { children: React.ReactNode }) {
-  return <p className="text-neutral-700 dark:text-neutral-300 mb-3">{children}</p>;
+  return <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300 mb-3">{children}</p>;
 }
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-block bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-200 px-2 py-0.5 rounded text-xs font-mono mr-2 mb-1">
+    <span className="inline-block bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-200 px-2 py-0.5 rounded text-xs font-mono mr-1 sm:mr-2 mb-1">
       {children}
     </span>
   );
@@ -59,11 +59,11 @@ function Badge({ children }: { children: React.ReactNode }) {
 const ProjectsComponent: React.FC = () => {
   return (
     <div>
-      <h2 className="text-2xl font-bold text-orange-900 dark:text-orange-100 mb-6">Projects</h2>
+      <h2 className="text-xl sm:text-2xl font-bold text-orange-900 dark:text-orange-100 mb-4 sm:mb-6">Projects</h2>
       <div>
         {projects.map((project, idx) => (
           <Card key={idx}>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
               <CardTitle>
                 {project.link ? (
                   <a
