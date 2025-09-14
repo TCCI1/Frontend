@@ -1,18 +1,23 @@
 "use client";
 
-import { useSession, UserButton } from "@clerk/nextjs";
+import { useSession, useUser, UserButton } from "@clerk/nextjs";
 import React from "react";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Settings } from "lucide-react";
 import { MDXProvider } from "@mdx-js/react";
 import CourseMDX from "@/components/course/software/course.mdx";
 import { components } from "@/components/course/software/mdx-components";
 import TimelineComponent from "@/components/timeline";
 import ProjectsComponent from "@/components/projects";
+import Meets from "@/components/Meets";
 
 const MainPage = () => {
   const { isLoaded, isSignedIn } = useSession();
+  const { user } = useUser();
   const [theme, setTheme] = React.useState<"light" | "dark">("dark");
-  const [activeTab, setActiveTab] = React.useState<"course" | "timeline" | "projects">("course");
+  const [activeTab, setActiveTab] = React.useState<"course" | "timeline" | "projects" | "meets">("course");
+  
+  // Check if user is admin
+  const isAdmin = user?.emailAddresses?.[0]?.emailAddress === "hiphopmusicradio25@gmail.com";
 
   React.useEffect(() => {
     const stored = typeof window !== 'undefined' ? localStorage.getItem('theme') as ("light"|"dark"|null) : null;
@@ -98,10 +103,26 @@ const MainPage = () => {
                 >
                   Projects
                 </button>
+                <button
+                  className={`px-3 py-2 text-sm sm:text-base rounded-md border border-orange-200 dark:border-neutral-700 text-orange-800 dark:text-neutral-200 bg-orange-50 dark:bg-neutral-800 font-medium hover:bg-orange-100 dark:hover:bg-neutral-700 transition whitespace-nowrap ${activeTab === 'meets' ? 'ring-2 ring-orange-400' : ''}`}
+                  onClick={() => setActiveTab('meets')}
+                  aria-pressed={activeTab === 'meets'}
+                >
+                  Meets
+                </button>
               </div>
             </div>
             {/* User Controls - Responsive */}
             <div className="flex items-center justify-end gap-2 sm:gap-4">
+              {isAdmin && (
+                <button 
+                  onClick={() => window.location.href = '/admin'}
+                  aria-label="Admin Panel" 
+                  className="inline-flex items-center justify-center rounded-md border border-orange-200 dark:border-neutral-700 p-2 sm:px-3 sm:py-2 text-orange-800 dark:text-neutral-200 hover:bg-orange-50 dark:hover:bg-neutral-800 transition"
+                >
+                  <Settings size={16} />
+                </button>
+              )}
               <button 
                 onClick={toggleTheme} 
                 aria-label="Toggle theme" 
@@ -128,6 +149,11 @@ const MainPage = () => {
           {activeTab === 'projects' && (
             <div className="bg-white/90 dark:bg-neutral-900/90 backdrop-blur rounded-xl sm:rounded-2xl shadow border border-orange-100 dark:border-neutral-800 p-4 sm:p-6">
               <ProjectsComponent />
+            </div>
+          )}
+          {activeTab === 'meets' && (
+            <div className="bg-white/90 dark:bg-neutral-900/90 backdrop-blur rounded-xl sm:rounded-2xl shadow border border-orange-100 dark:border-neutral-800 p-4 sm:p-6">
+              <Meets />
             </div>
           )}
         </div>
