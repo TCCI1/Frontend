@@ -1,125 +1,136 @@
 "use client";
 
-import * as React from "react";
+import { motion } from "framer-motion";
+import { CheckCircle, Circle } from "lucide-react";
 
-// Timeline data type
-type TimelineItem = {
-  title: string;
-  date: string;
-  description?: string;
-  icon?: React.ReactNode;
-  link?: string;
-};
-
-const timelineData: TimelineItem[] = [
+// Data for each week in the timeline
+const weeksData = [
   {
-    title: "Started Learning Programming",
-    date: "2018",
-    description: "Began with Python and basic web development.",
-    icon: (
-      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-200 text-lg font-bold">
-        🐍
-      </span>
-    ),
+    label: "Week 1",
+    tasks: ["C-programming Basics", "Simple Calculator"],
   },
   {
-    title: "First Open Source Contribution",
-    date: "2019",
-    description: "Contributed to a GitHub project and learned about collaboration.",
-    icon: (
-      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-200 text-lg font-bold">
-        🌐
-      </span>
-    ),
+    label: "Week 2",
+    tasks: ["Control Flow", "Number Guessing Game"],
   },
   {
-    title: "Built My First App",
-    date: "2020",
-    description: "Created a to-do app using React and Firebase.",
-    icon: (
-      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-200 text-lg font-bold">
-        ⚛️
-      </span>
-    ),
+    label: "Week 3",
+    tasks: ["Functions & Arrays", "Simple To-Do List"],
   },
   {
-    title: "Joined University",
-    date: "2021",
-    description: "Started Computer Science degree.",
-    icon: (
-      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-200 text-lg font-bold">
-        🎓
-      </span>
-    ),
+    label: "Week 4",
+    tasks: ["Pointers & Memory Management", "Employee Recording System"],
   },
   {
-    title: "Internship at Tech Company",
-    date: "2022",
-    description: "Worked as a software engineering intern.",
-    icon: (
-      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-200 text-lg font-bold">
-        💼
-      </span>
-    ),
+    label: "Week 5",
+    tasks: ["Python Basics", "Control Flow Statement", "Operations"],
   },
   {
-    title: "Launched Portfolio Website",
-    date: "2023",
-    description: "Deployed my personal site and blog.",
-    icon: (
-      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-pink-100 dark:bg-pink-900 text-pink-600 dark:text-pink-200 text-lg font-bold">
-        🚀
-      </span>
-    ),
-    link: "https://myportfolio.com",
+    label: "Week 6",
+    tasks: ["Data Structures", "Functions"],
   },
+  {
+    label: "Week 7",
+    tasks: ["Object-Oriented Programming (OOP)", "File I/O"],
+  },
+  {
+    label: "Week 8",
+    tasks: ["Advanced Topics"],
+  },
+  {
+    label: "Week 9",
+    tasks: ["Structure"],
+  },
+  {
+    label:"Week 10",
+    tasks:["Html "]
+  }
 ];
 
-const TimelineComponent: React.FC = () => {
+export default function Timeline() {
   return (
-    <div className="relative pl-4 sm:pl-6">
-      {/* Vertical line */}
-      <div className="absolute left-2 sm:left-4 top-0 bottom-0 w-0.5 sm:w-1 bg-orange-200 dark:bg-orange-800 rounded-full" aria-hidden="true" />
-      <ul className="space-y-6 sm:space-y-10">
-        {timelineData.map((item, idx) => (
-          <li key={idx} className="relative flex items-start group">
-            {/* Icon */}
-            <div className="absolute -left-1 sm:-left-1.5 z-10">
-              {item.icon || (
-                <span className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-orange-200 dark:bg-orange-800 text-orange-700 dark:text-orange-200 text-sm sm:text-lg font-bold">
-                  {idx + 1}
-                </span>
-              )}
+    <div className="p-8 max-w-5xl mx-auto bg-gradient-to-b from-gray-950 via-black to-gray-900 min-h-screen text-white">
+      <h2 className="text-4xl font-extrabold mb-4 text-center bg-gradient-to-r from-purple-400 to-pink-500 text-transparent bg-clip-text">
+        🚀 Programming Journey (8 Weeks)
+      </h2>
+      <p className="text-center text-gray-400 mb-12 text-lg">
+        Master programming step by step — from C fundamentals to Python and
+        beyond.
+      </p>
+
+      <div className="relative border-l border-gray-700 pl-6 space-y-10">
+        {weeksData.map((week, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {/* Timeline dot: CheckCircle for first 4 weeks, Circle for others */}
+            <div className="absolute -left-10 flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 shadow-md">
+              {idx < 4 ? <CheckCircle size={18} /> : <Circle size={18} />}
             </div>
-            <div className="ml-6 sm:ml-10">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-                <h3 className="text-base sm:text-lg font-semibold text-orange-900 dark:text-orange-100">
-                  {item.link ? (
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline hover:text-orange-600 dark:hover:text-orange-300 transition-colors"
-                    >
-                      {item.title}
-                    </a>
-                  ) : (
-                    item.title
-                  )}
+
+            {/* Python section intro only once, before week 5 */}
+            {idx === 4 && (
+              <div className="mb-6">
+                <h3 className="text-2xl font-bold text-purple-400">
+                  🔥 Python Programming (Weeks 5–8)
                 </h3>
-                <span className="text-xs bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-200 px-2 py-0.5 rounded font-mono self-start sm:ml-2">
-                  {item.date}
-                </span>
+                <p className="text-gray-400">
+                  After completing 4 weeks of C-Programming, it’s time to
+                  explore Python and expand your skills!
+                </p>
               </div>
-              {item.description && (
-                <p className="mt-1 text-sm sm:text-base text-neutral-700 dark:text-neutral-300">{item.description}</p>
+            )}
+
+            {/* DSA section intro only once, before week 9 */}
+            {idx === 8 && (
+              <div className="mb-6">
+                <h3 className="text-2xl font-bold text-purple-400">
+                  🔥 DSA Programming (Weeks 9)
+                </h3>
+                <p className="text-gray-400">
+                  After completing 8 weeks of C-Programming and Python, it’s time to
+                  explore Data Structures and Algorithms!
+                </p>
+              </div>
+            )}
+            {
+              idx === 9 && (
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-purple-400">
+                  🔥 Frontend development(weeks 9)
+                  </h3>
+                  <p className="text-gray-400">
+                  After completing 16 weeks of DataStructure , it’s time to
+                  explore frontend
+                  </p>
+                </div>
               )}
+            {/* Week card */}
+            <div className="bg-gray-900/60 border border-gray-700 rounded-2xl p-6 shadow-md hover:shadow-purple-600/40 transition duration-300">
+              <h4 className="text-xl font-semibold text-pink-400 mb-4">
+                {week.label}
+              </h4>
+
+              <div className="flex flex-wrap gap-3">
+                {week.tasks.map((task, tIdx) => (
+                  <motion.span
+                    key={tIdx}
+                    whileHover={{ scale: 1.05 }}
+                    className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-4 py-2 rounded-full shadow-md text-sm font-medium cursor-pointer hover:shadow-lg transition"
+                  >
+                    {task}
+                  </motion.span>
+                ))}
+              </div>
             </div>
-          </li>
+          </motion.div>
         ))}
-      </ul>
+      </div>
     </div>
   );
-};
-
-export default TimelineComponent;
+}
